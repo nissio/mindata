@@ -25,6 +25,12 @@ public final class Materia implements Comparable<Materia> {
         if (calificacion == null) {
             throw new NullPointerException("La calificación no puede ser nula.");
         }
+        if (calificacion < 0) {
+            throw new IllegalStateException("La calificación debe ser mayor o igual que cero.");
+        }
+        if (calificacion > 100) {
+            throw new IllegalStateException("La calificación debe ser menor o igual que 100.");
+        }
         this.nombre = nombre;
         this.calificacion = calificacion;
     }
