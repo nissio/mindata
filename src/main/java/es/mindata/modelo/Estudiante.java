@@ -1,7 +1,7 @@
 package es.mindata.modelo;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -35,6 +35,9 @@ public final class Estudiante implements Comparable<Estudiante> {
         if (edad == null) {
             throw new NullPointerException("La edad no puede ser nula.");
         }
+        if (edad <= 0) {
+            throw new IllegalStateException("La edad debe ser mayor que cero.");
+        }
         if (fechaFinalizacion == null) {
             throw new NullPointerException("La fecha de finalización no puede ser nula.");
         }
@@ -44,8 +47,7 @@ public final class Estudiante implements Comparable<Estudiante> {
         this.nombre = nombre;
         this.edad = edad;
         this.fechaFinalizacion = fechaFinalizacion;
-        this.materiasCursadas = new ArrayList<>();
-        this.materiasCursadas.addAll(materiasCursadas);
+        this.materiasCursadas = Collections.unmodifiableList(materiasCursadas);
     }
 
     /**
@@ -90,7 +92,7 @@ public final class Estudiante implements Comparable<Estudiante> {
      * @return la lista de materias cursadas
      */
     public List<Materia> getMateriasCursadas() {
-        return new ArrayList<>(materiasCursadas);
+        return materiasCursadas;
     }
 
     /**
