@@ -12,6 +12,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public final class Fecha implements Comparable<Fecha> {
 
     private final LocalDate fecha;
+    private final String diaMes;
 
     /**
      * Crea una nueva instancia de Fecha.
@@ -23,6 +24,7 @@ public final class Fecha implements Comparable<Fecha> {
             throw new NullPointerException("La fecha no puede ser nula.");
         }
         this.fecha = fecha;
+        this.diaMes = fecha.getMonthValue() + "/" + fecha.getDayOfMonth();
     }
 
     /**
@@ -40,7 +42,7 @@ public final class Fecha implements Comparable<Fecha> {
      * @return el día y mes de la fecha
      */
     public String getDiaMes() {
-        return getFecha().getMonthValue() + "/" + getFecha().getDayOfMonth();
+        return diaMes;
     }
 
     @Override
