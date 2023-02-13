@@ -1,37 +1,31 @@
 package es.mindata.modelo;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit test for Fecha.
  */
 public class FechaTest {
 
-    private LocalDate localDate;
-    private Fecha fecha;
-    private String diaMes;
+    private static LocalDate localDate;
+    private static Fecha fecha;
+    private static String diaMes;
 
-    @Before
-    public void before() {
-        this.localDate = LocalDate.now();
-        this.fecha = new Fecha(localDate);
-        diaMes = this.localDate.getMonthValue() + "/" + this.localDate.getDayOfMonth();
+    @BeforeAll
+    public static void before() {
+        localDate = LocalDate.now();
+        fecha = new Fecha(localDate);
+        diaMes = localDate.getMonthValue() + "/" + localDate.getDayOfMonth();
     }
 
     @Test
     public void diaMesFechaOk() {
-        assertEquals(this.fecha.getDiaMes(), diaMes);
-    }
-
-    @Test
-    public void diaMesFechaFechaInmutableOk() {
-        this.localDate = this.localDate.plusDays(10);
-        assertEquals(this.fecha.getDiaMes(), diaMes);
+        assertEquals(diaMes, fecha.getDiaMes());
     }
 
 }

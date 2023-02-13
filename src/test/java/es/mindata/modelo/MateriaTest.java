@@ -1,34 +1,33 @@
 package es.mindata.modelo;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit test for Materia.
  */
 public class MateriaTest {
 
-    private String nombre;
-    private Float calificacion;
-    private Materia materia;
+    private static String nombre;
+    private static Float calificacion;
+    private static Materia materia;
 
-    @Before
-    public void before() {
-        this.nombre = "Materia A";
-        this.calificacion = (float) 9;
-        this.materia = new Materia(nombre, calificacion);
+    @BeforeAll
+    public static void beforeAll() {
+        nombre = "Materia A";
+        calificacion = (float) 9;
+        materia = new Materia(nombre, calificacion);
     }
 
     @Test
-    public void nombreOk() {
-        assertEquals(this.materia.getNombre(), nombre);
-    }
-
-    @Test
-    public void calificacionOk() {
-        assertEquals(this.materia.getCalificacion(), calificacion);
+    public void parametrosOk() {
+        assertAll(
+                "Propiedades de la materia",
+                () -> assertEquals(nombre, materia.getNombre()),
+                () -> assertEquals(calificacion, materia.getCalificacion()));
     }
 
 }
